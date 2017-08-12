@@ -1,7 +1,15 @@
-<div id="sidebar_left" class="col-sm-2">
-          <ul class="nav nav-sidebar">
-            <li><h4>基本分析</h4></li>
-            <li><a href="../CompanyProfile/<%= data[0].code %>">基本資料</a></li>
+<!DOCTYPE html>
+<html lang="en">
+<style>
+li{
+   font-size: 18px;
+}  
+</style>
+
+<div id="sidebar_left" class="col-sm-2" style="font-size: 20px">
+          <ul class="nav nav-sidebar" >
+            <li><h3>基本分析</h3></li>
+            <li><a href="../CompanyProfile/<%= data[0].code %>" >基本資料</a></li>
             <li><a href="#">股利政策</a></li>
             <li><a href="../Schedule/<%= data[0].code %>">重大行事曆</a></li>
             <li><a href="#">營收盈餘</a></li>
@@ -9,11 +17,12 @@
             <li><a href="#">淨值比</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><h4>技術分析</h4></li>
+            <li><h3><a href="#">技術分析</a></h3></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><h4>籌碼分析</h4></li>
+            <li><h3>籌碼分析</h3></li>
             <li><a href="">董監持股</a></li>
             <li><a href="">三大法人</a></li>
           </ul>
         </div>
+</html>

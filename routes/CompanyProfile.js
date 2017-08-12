@@ -5,7 +5,7 @@ var sql = require('mssql');
 /* GET company page. */
 router.get('/', function(req, res, next) {
 	//若只輸入companys就轉到1101
-	res.redirect("/CompanyProfile/1101");
+	res.redirect("/CompanyProfile/1101", { title: '股起勇氣' });
 });
 /*GET companyinfo page*/
 router.get('/:code',function(req,res,next){
@@ -19,10 +19,9 @@ router.get('/:code',function(req,res,next){
 				res.send(err);
 			}
 			sql.close();
-			res.render('./CompanyProfile', {title:'股起勇氣',data: result.recordset });
+			res.render('./CompanyProfile', {title: '股起勇氣', data: result.recordset });
 		});
 	});
 });
-
 
 module.exports = router;

@@ -6,4 +6,5 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: '股起勇氣' });
 });
 
+
 module.exports = router;
