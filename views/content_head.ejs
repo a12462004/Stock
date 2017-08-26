@@ -13,36 +13,34 @@
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
-        <div>
-            
-            <div style="width: 15%;"  class="nav navbar-right fb-login-button"  data-max-rows="1" data-size="small" data-button-type="login_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="true">
-              
+        <div>         
+            <div style="width: 15%;"  id="FBlogin" class="nav navbar-right fb-login-button" data-max-rows="1" data-size="small" data-button-type="login_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="true" >
             </div>
             <form class="navbar-form navbar-right" role="search">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="輸入公司代碼" style="">
-
+                <input type="text" class="form-control" placeholder="輸入公司代碼">
               </div>
               <button type="submit" class="btn btn-default">搜尋</button>
             </form>
            </div>
           <ul class="nav navbar-nav navbar-right"  align="right" >
+            <li id="collection1" ><a href="#">收藏</a></li>
+            <li id="collection2" ><a>｜</a></li>
             <li><a href="#">股票資訊</a></li>
             <li><a>｜</a></li>
-            <li><a href="#">股票小學堂</a></li>
-            <li><a>｜</a></li>
-            <li><a href="#">收藏</a></li> 
-            <li><a>｜</a></li>
-          </ul> 
-          
+            <li><a href="#">股票小學堂</a></li> 
+            <li><a>　</a></li>
+          </ul>         
           </div>
-
         </div>
       </div>
 
     </nav>
 
     <script>
+     FBlogin.onclick = function(){
+        window.location.reload();
+     }
       // This is called with the results from from FB.getLoginStatus().
       function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -53,7 +51,13 @@
         // for FB.getLoginStatus().
         if (response.status === 'connected') {
           // Logged into your app and Facebook.
+          $('#collection1').show();
+          $('#collection2').show();
           testAPI();
+        }
+        else{
+          $('#collection1').hide();         
+          document.getElementById("collection2").style.display = 'none';
         }
       }
 
@@ -93,10 +97,11 @@
       // Here we run a very simple test of the Graph API after login is
       // successful.  See statusChangeCallback() for when this call is made.
       function testAPI() {
-        console.log('Welcome!  Fetching your information.... ');
+
         FB.api('/me', function(response) {
           console.log('Successful login for: ' + response.name);
           alert('Hello ' + response.name + ' ^o^');
+         
         });
       }
 
