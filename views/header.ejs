@@ -1,7 +1,41 @@
   <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  
+  <script type="text/javascript" src="../JS/bootstrap3-typeahead.js"></script>
   <link rel='stylesheet' href='/stylesheets/StockStyle.css' />
+  <script type="text/javascript">
+  	$(document).ready(function(){
+        $('#search').typeahead({
+        	items:'all',
+        	scrollHeight: 0,
+            source: function (query, process) {
+                $.ajax({
+                    url: '/search',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {keyword:query},
+                    success: function (list) {
+                        var resultList = list.map(function (item) {
+                            var aItem = {value:item.code+'　'+item.company };
+                            return JSON.stringify(aItem);
+                        });
+                        return process(resultList);
+                    }
+                });
+            },
+            displayText: function (item) {
+                    return "选：" + item;//返回字符串
+                },
+            afterSelect: function (item) {
+                   // alert(item);
+                   alert(location.pathname);
+                   window.location.replace(location.pathname+"?code=1102");
+                   //跳轉到該選取的item頁面資料
+                   //怎麼很奇怪?重大行事曆也還是跳轉到公司基本頁
+            }
+        });
+    });
+  </script>
   </head>
