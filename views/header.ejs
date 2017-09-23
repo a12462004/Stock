@@ -17,21 +17,22 @@
                     dataType: 'JSON',
                     data: {keyword:query},
                     success: function (list) {
-                        var resultList = list.map(function (item) {
-                            var aItem = {id:item.code,company:item.company};
-                            return JSON.stringify(aItem);
-                        });
-                        return process(resultList);
+                        // var resultList = list.map(function (item) {
+                        //     var aItem = {id:item.code,company:item.company};
+                        //     return JSON.stringify(aItem);
+                        // });
+                        return process(list);
                     }
                 });
             },
             displayText: function (item) {
-                    return item;//返回字符串
+                    return item; //返回字符串
                 },
             afterSelect: function (item) {
-                   // alert(item);
-                   alert(location.pathname);
-                   window.location.replace(location.pathname+"?code=1104");
+                  var code = item;
+                  code =  item.split("　");
+                  code = code[0];
+                   window.location.replace(location.pathname+"?code="+code);
                    //跳轉到該選取的item頁面資料
             }
         });

@@ -23,7 +23,10 @@ router.post('/search',function(req,res,next){
 			}
 			sql.close();
 			// console.log(result.recordset);
-			var list = result.recordset;
+			var list = [];
+			for (var i = 0; i < result.rowsAffected; i++) {
+				list[i]= result.recordset[i].code + "　"+result.recordset[i].company;
+			}
 			res.send(list);
 		});
 	});
