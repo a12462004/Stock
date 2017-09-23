@@ -18,7 +18,7 @@
                     data: {keyword:query},
                     success: function (list) {
                         var resultList = list.map(function (item) {
-                            var aItem = {value:item.code+'　'+item.company };
+                            var aItem = {id:item.code,company:item.company};
                             return JSON.stringify(aItem);
                         });
                         return process(resultList);
@@ -26,7 +26,7 @@
                 });
             },
             displayText: function (item) {
-                    return "选：" + item;//返回字符串
+                    return item;//返回字符串
                 },
             afterSelect: function (item) {
                    // alert(item);

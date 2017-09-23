@@ -13,6 +13,7 @@
 
             <div class="col-xs-6 " >
               <img src="../images/poya.png" class=" img-circle" style="float:right;width:300px; height:300;" >
+              <input type="button" value="收藏" onclick="Collection('add',<%= data[0].code %>);">
             </div>  
             <div class="col-xs-6 " style="height:200px;width:400px;text-align:left;">
               <h3 class="valign">
@@ -108,5 +109,18 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      function Collection(act,code) {
+        // alert(act);
+         $.ajax({
+                  type: 'POST',
+                  url: 'CompanyProfile/conllection',
+                  data: {act: act,code:code},
+                   success: function (msg) { //成功收藏後接受到訊息，印出來
+                        alert(msg);
+                    }
+              });
+      }
+    </script>
   </body>
 </html>

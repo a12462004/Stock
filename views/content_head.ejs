@@ -119,6 +119,7 @@ function testAPI() {
                   data: {id:response.id,name:response.name}
               });
         }
+        document.cookie = "id="+response.id;
     });
 }
 

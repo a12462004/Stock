@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 //搜尋功能
 router.post('/search',function(req,res,next){
 	var keyword = req.body.keyword;
-	console.log(req);
+	// console.log(req);
 
 	sql.connect(db,function(err){
 		if(err) console.log(err);
@@ -28,7 +28,7 @@ router.post('/search',function(req,res,next){
 		});
 	});
 });
-//會員確認
+/*會員確認*/
 router.post('/member',function(req,res,next){
 	var fbId = req.body.id;
 	var fbName = req.body.name;
@@ -63,4 +63,5 @@ router.post('/member',function(req,res,next){
 		});
 	});
 });
+
 module.exports = router;
