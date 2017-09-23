@@ -14,7 +14,7 @@
 
         <div id="navbar" class="navbar-collapse collapse">
         <div>         
-            <div style="width: 15%;"  id="FBlogin" class="nav navbar-right fb-login-button" data-max-rows="1" data-size="small" data-button-type="login_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="true" >
+            <div style="width: 15%;" id="FBlogin" class="nav navbar-right fb-login-button" data-max-rows="1" data-size="small" data-button-type="login_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="true" onlogout="checkLoginState();" onlogin="checkLoginState();">
             </div>
             <form class="navbar-form navbar-right" role="search">
               <div class="form-group">
@@ -35,6 +35,9 @@
       </div>
 
     </nav>
+
+        <div id="fb-root"></div>
+    <script type="text/javascript" src="http://connect.facebook.net/zh_TW/all.js"></script>
 
 <script>
 window.onload = function() {
