@@ -23,9 +23,9 @@
             </form>
            </div>
           <ul class="nav navbar-nav navbar-right"  align="right" >
-            <li id="collection1" ><a href="#">收藏</a></li>
-            <li id="collection2" ><a>｜</a></li>
-            <li><a href="#">股票資訊</a></li>
+            <li id="li1" style="display:none;"><a href="../Collection">收藏</a></li>
+                <li id="divide1" style="display:none;"><a>｜</a></li>
+            <li><a href="/CompanyProfile?code=1101">股票資訊</a></li>
             <li><a>｜</a></li>
             <li><a href="#">股票小學堂</a></li> 
             <li><a>　</a></li>
@@ -105,17 +105,19 @@ function testAPI() {
     FB.api('/me', function(response) {
         // console.log('Successful login for: ' + response.name);
         // alert('Hello ' + response.name + ' ^o^');
-
+        var user = new Array();
+        user['id']=response.id;
+        user['name']=response.name;
+        if(user['id'] !=undefined && user['name']!=undefined){  //若沒登入即不會做比對
         //利用ajax將fb的id和name新增到我們的資料庫
         $.ajax({
                   type: 'POST',
                   url: '/member',
                   data: {id:response.id,name:response.name}
               });
-
+        }
     });
 }
-
 
 </script>
 </html>
