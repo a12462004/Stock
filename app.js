@@ -11,6 +11,10 @@ var users = require('./routes/users');
 var CompanyProfile = require('./routes/CompanyProfile');
 var Schedule = require('./routes/Schedule');
 var Collection = require('./routes/Collection');
+var DividendPolicy = require('./routes/DividendPolicy');
+var Revenue = require('./routes/Revenue');
+var Chairman = require('./routes/Chairman');
+var Stock = require('./routes/Stock');
 
 var app = express();
 // view engine setup
@@ -31,6 +35,10 @@ app.use('/users', users);
 app.use('/CompanyProfile', CompanyProfile);
 app.use('/Schedule', Schedule);
 app.use('/Collection',Collection);
+app.use('/DividendPolicy',DividendPolicy);
+app.use('/Revenue',Revenue);
+app.use('/Chairman',Chairman);
+app.use('/Stock',Stock);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

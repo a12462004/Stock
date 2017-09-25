@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include header.ejs %> 
+  <body>
+    <%- include content_head.ejs %> 
+    <div class="container-fluid">
+      <div class="row">
+        <%- include sidebar.ejs %> 
+
+        <div class="text-center">
+          <div class=col-sm-10>
+            <div id="upper_row" class="row">
+
+            <div class="col-xs-6 " >
+              <img src="../images/poya.png" class=" img-circle" style="float:right;width:300px; height:300;" >
+            </div>  
+            <div class="col-xs-6 " style="height:200px;width:400px;text-align:left;">
+              <h3 class="valign">
+              <%= data[0].code %>
+              <br/><br/><%= data[0].company %>
+              </h3>
+            </div>
+          </div>
+          </div>
+
+          <div>
+            <div id="sencondTitle" class="col-sm-10">
+              <h2 class="page-header" >董監持股</h2>
+            </div>
+            <div class="table-responsive col-sm-10">
+              <table class="table table-striped table-bordered" style="width:100%;font-size: 20px">
+                <thead>
+                  <th class="warning">身分別</th>
+                  <th class="warning">姓名</th>
+                  <th class="warning">持股張數</th>
+                  <th class="warning">持股比例</th>
+                </thead>
+                <tbody>
+                  <% for(var i=0; i<data.length; i++) {%>
+                    <tr>
+                      <td>
+                        <%= data[i].identity%>
+                      </td>
+                      <td>
+                        <%= data[i].owner%>
+                      </td>
+                      <td>
+                        <%= data[i].s_sumber%>
+                      </td>
+                      <td>
+                        <%= data[i].s_rate%>
+                      </td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        </div> 
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

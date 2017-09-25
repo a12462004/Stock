@@ -53,13 +53,13 @@ router.post('/member',function(req,res,next){
 						res.send(err);
 					}
 					else{
-						console.log('新增成功.');
+						// console.log('新增成功.');
 						 sql.close(); //sql要記得關，不然會卡住run不動.
 					}
 				});
 			}
 			else if(rowsCount == '1'){
-				console.log('已是會員.');
+				// console.log('已是會員.');
 				sql.close(); //sql要記得關，不然會卡住run不動.
 			}
 			
