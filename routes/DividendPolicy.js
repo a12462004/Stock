@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 		sql.connect(db,function(err){
 			if(err) console.log(err);
 			var request = new sql.Request();
-			request.query("SELECT [code],[company],[cash_dividend],[surplus],[plot],YEAR([data]) as date FROM [DividendPolicy_] WHERE code='"+code+"'",function(err,result){
+			request.query("SELECT [code],[company],[cash_dividend],[surplus],[plot],YEAR([data]) as date FROM [DividendPolicy] WHERE code='"+code+"'",function(err,result){
 				if(err){
 					console.log(err);
 					res.send(err);

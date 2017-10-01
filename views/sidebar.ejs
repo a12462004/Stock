@@ -17,8 +17,8 @@ li{
             <li><a href="../DividendPolicy?code=<%= data[0].code %>">股利政策</a></li>
             <li><a href="../Schedule?code=<%= data[0].code %>">重大行事曆</a></li>
             <li><a href="../Revenue?code=<%= data[0].code %>">營收盈餘</a></li>
-            <li><a href="#">本益比</a></li>
-            <li><a href="#">淨值比</a></li>
+            <li><a href="../PER?code=<%= data[0].code %>">本益比</a></li>
+            <li><a href="../PBR?code=<%= data[0].code %>">淨值比</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><h3><a href="#">技術分析</a></h3></li>
@@ -26,7 +26,7 @@ li{
           <ul class="nav nav-sidebar">
             <li><h3>籌碼分析</h3></li>
             <li><a href="../Chairman?code=<%= data[0].code%>">董監持股</a></li>
-            <li><a href="">三大法人</a></li>
+            <li><a href="#">三大法人</a></li>
           </ul>
         </div>
 </html>

@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 		sql.connect(db,function(err){
 			if(err) console.log(err);
 			var request = new sql.Request();
-			request.query("SELECT Chairman.*,company.company FROM (SELECT * FROM Chairman WHERE code = '"+code+"') AS Chairman INNER JOIN (SELECT code,company FROM CompanyProfile WHERE code ='"+code+"') AS company ON Chairman.code = company.code ORDER BY [Chairman].[identity] DESC",function(err,result){
+			request.query("SELECT Chairman.*,company.company FROM Chairman AS Chairman INNER JOIN (SELECT code,MAX(h_date) AS max_date FROM Chairman GROUP BY code) AS max_Chairman ON Chairman.code = max_Chairman.code AND Chairman.h_date = max_Chairman.max_date INNER JOIN (SELECT code,company FROM CompanyProfile WHERE code ='"+code+"') AS company ON Chairman.code = company.code WHERE Chairman.code = '"+code+"' AND [Chairman].[owner] NOT LIKE '%合計%' AND [Chairman].[identity] NOT LIKE '%揭露%' ORDER BY [Chairman].[identity] DESC",function(err,result){
 				if(err){
 					console.log(err);
 					res.send(err);
