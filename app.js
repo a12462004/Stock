@@ -17,6 +17,7 @@ var Chairman = require('./routes/Chairman');
 var Stock = require('./routes/Stock');
 var PER = require('./routes/PER');
 var PBR = require('./routes/PBR');
+var test = require('./routes/test');
 
 var app = express();
 // view engine setup
@@ -43,6 +44,7 @@ app.use('/Chairman',Chairman);
 app.use('/Stock',Stock);
 app.use('/PER',PER);
 app.use('/PBR',PBR);
+app.use('/test',test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

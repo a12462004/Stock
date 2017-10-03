@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include header.ejs %> 
+  <body>
+    <%- include content_head.ejs %> 
+    <div class="container-fluid">
+      <div class="row"> 
+        <div class="text-center">
+          <div class="test">
+            <h1>這是測試</h1>
+           <input type="button" value="是" />
+           <img class="tt" src="../images/asus.png">
+           <input  type="radio" name="size" value="10">10吋
+           <input  type="radio" name="size" value="12">12吋
+           <input  type="radio" name="size" value="14" checked>14吋
+           <input  type="radio" name="size" value="18">18吋<p>
+          </div>
+        </div> 
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function Collection(act,code) {
+        // alert(act);
+         $.ajax({
+                  type: 'POST',
+                  url: 'CompanyProfile/conllection',
+                  data: {act: act,code:code},
+                   success: function (msg) { //成功收藏後接受到訊息，印出來
+                        alert(msg);
+                    }
+              });
+      }
+    </script>
+  </body>
+</html>
