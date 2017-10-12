@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 		sql.connect(db,function(err){
 			if(err) console.log(err);
 			var request = new sql.Request();
-			request.query("SELECT [code],[company],[cash_dividend],[surplus],[plot],YEAR([data]) as date,cash_dividend,(surplus+plot) as stock_dividend FROM [DividendPolicy] WHERE code='"+code+"'",function(err,result){
+			request.query("SELECT [code],[company],[cash_dividend],[surplus],[plot],YEAR([shareholders_date])-1 as date,(surplus+plot) as stock_dividend FROM [DividendPolicy] WHERE code='"+code+"' ORDER BY date DESC" ,function(err,result){
 				if(err){
 					console.log(err);
 					res.send(err);
@@ -34,7 +34,7 @@ router.post('/getChartData',function(req,res,next){
 	sql.connect(db,function(err) {
 		if(err) console.log(err);
 		var request = new sql.Request();
-		request.query("SELECT YEAR([data]) as year,cash_dividend,(surplus+plot) as stock_dividend FROM [DividendPolicy] WHERE code='"+code+"'",function(err,result){
+		request.query("SELECT YEAR([shareholders_date])-1 as year,cash_dividend,(surplus+plot) as stock_dividend FROM [DividendPolicy] WHERE code='"+code+"'",function(err,result){
 			if(err){
 				console.log(err);
 				res.send(err);
