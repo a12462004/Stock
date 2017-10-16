@@ -20,6 +20,8 @@ var PBR = require('./routes/PBR');
 var test = require('./routes/test');
 var article = require('./routes/article');
 var article_content = require('./routes/article_content');
+var question = require('./routes/question');
+var grade = require('./routes/grade');
 
 
 var app = express();
@@ -50,6 +52,8 @@ app.use('/PBR',PBR);
 app.use('/test',test);
 app.use('/article',article);
 app.use('/article_content',article_content);
+app.use('/question',question);
+app.use('/grade',grade);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

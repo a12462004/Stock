@@ -1,0 +1,17 @@
+.jumbotron {
+  background: url(../images/question.jpg) no-repeat top center;
+}
+.jumbotron .title {
+  text-align: left;
+  color: #1e9f9d;
+  font-size: 3vw;
+  line-height: 4vw;
+  font-weight:bold;
+   margin-bottom: 2vw;
+}
+.label
+{
+	 font-size: 2vw;
+	color: #333;
+	 line-height: 3vw;
+}

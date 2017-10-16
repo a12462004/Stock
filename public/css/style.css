@@ -1,0 +1,47 @@
+
+
+.custom-radios div {
+  display: inline-block;
+}
+.custom-radios input[type="radio"] {
+  display: none;
+}
+.custom-radios input[type="radio"] + label {
+  color: #333;
+  font-family: Microsoft JhengHei,Arial, sans-serif;
+}
+.custom-radios input[type="radio"] + label span {
+  display: inline-block;
+  width: 3vw;
+  height: 3vw;
+  margin: -1px 1vw 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  line-height: 3vw;
+}
+
+.custom-radios input[type="radio"] + label span img {
+  opacity: 0;
+  
+   width: 2vw;
+  height: 2vw;
+  transition: all .3s ease;
+}
+.custom-radios input[type="radio"]#good + label span {
+  background-color: #2ecc71;
+}
+.custom-radios input[type="radio"] + label span {
+  background-color: #1e9f9d;
+}
+.custom-radios input[type="radio"]#error + label span {
+  background-color: #e74c3c;
+}
+.custom-radios input[type="radio"]:checked + label span img{
+  opacity: 1;
+}

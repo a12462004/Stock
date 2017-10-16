@@ -1,0 +1,75 @@
+.jumbotron {
+	
+	
+  font-family: Microsoft JhengHei;
+	 background-size:90% auto;
+	 
+    height:-webkit-fill-available;
+}
+.navbar {
+  margin-bottom: 0;
+}
+@media screen and (max-width: 1300px)
+{
+ .jumbotron {
+ height: 670px;
+ }
+ .overflow-box
+{
+	height:25vh;
+}
+}
+@media screen and (max-width: 1024px)
+{
+ .jumbotron {
+ height: 500px;
+ }
+}
+@media screen and (max-width: 480px)
+{
+ .jumbotron {
+ height: 250px;
+ }
+}
+.content {
+  margin: 3vw 12vw;
+  
+  font-family: Microsoft JhengHei;
+}
+
+.jumbotron .content
+{
+	text-align:center;
+}	
+@media (max-width: 768px) {
+  .navbar-right form {
+    display: none;
+  }
+}
+@media (max-width: 568px) {
+  .jumbotron {
+    text-align: center;
+  }
+
+  footer {
+    text-align: center;
+  }
+}
+
+/*表單樣式*/
+
+.custom-radios input[type="radio"]:checked  + label div {
+  color: #31708f;
+  font-weight:bold;
+  text-decoration: underline;
+}
+.custom-radios input[type="radio"]#good + label div {
+  color: #2ecc71;
+  font-weight:bold;
+  text-decoration: underline;
+}
+.custom-radios input[type="radio"]#error + label div {
+  color: #f22;
+  font-weight:bold;
+  text-decoration: line-through;
+}

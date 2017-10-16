@@ -1,0 +1,124 @@
+.jumbotron {
+  background: url(../images/start.jpg) no-repeat top center;
+}
+/* overflow */
+.overflow-box
+{
+	height:45vh;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+.head-t h1
+{
+  text-align: center;
+	
+  font-size:  4vw;
+  font-weight:bold;
+  color: #1e9f9d;
+}
+.right-t
+{
+  text-align: right;
+	
+  font-size:  5vw;
+  line-height: 30vw;
+  font-family: fantasy;
+  font-weight:bold;
+  text-decoration: underline;
+  color: #f00;
+}
+.end-content
+{
+	margin: 3vw 16vw;
+  
+  font-family: Microsoft JhengHei;
+}
+.jumbotron .ans-title h2{
+  text-align: left;
+  font-size: 2vw;
+  line-height: 2vw;
+   margin-bottom: 1vw;
+   
+   margin-top: 1vh;
+}
+.label
+{
+	 font-size: 1vw;
+	color: #333;
+	 line-height: 2vw;
+}
+
+.small-radios
+{
+	
+   margin-left: 1vw;
+   margin-top: 2vw;
+   margin-bottom: 3vw;
+}
+.small-radios div {
+  display: inline-block;
+  
+}
+.small-radios input[type="radio"] {
+  display: none;
+}
+.small-radios input[type="radio"] + label {
+  color: #333;
+  font-family: Microsoft JhengHei,Arial, sans-serif;
+}
+.small-radios input[type="radio"] + label span {
+  display: inline-block;
+  width: 2vw;
+  height: 2vw;
+  margin: -1px 1vw 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  line-height: 2vw;
+}
+/* 綠色打勾勾 */
+.small-radios input[type="radio"]#good + label span img {
+
+   opacity: 1;
+   width: 2vw;
+  height: 2vw;
+  transition: all .3s ease;
+}
+.small-radios input[type="radio"] + label span img {
+
+   opacity: 0;
+   width: 2vw;
+  height: 2vw;
+  transition: all .3s ease;
+}
+.small-radios input[type="radio"]#good + label span {
+  background-color: #2ecc71;
+}
+.small-radios input[type="radio"] + label span {
+
+  background-color: #1e9f9d;
+}
+.small-radios input[type="radio"]#error + label span {
+  background-color: #e74c3c;
+}
+.small-radios input[type="radio"]:checked  + label div {
+  color: #31708f;
+  font-weight:bold;
+  text-decoration: underline;
+}
+
+.small-radios input[type="radio"]#good + label div {
+  color: #2ecc71;
+  font-weight:bold;
+  text-decoration: underline;
+}
+.small-radios input[type="radio"]#error + label div {
+  color: #f22;
+  font-weight:bold;
+  text-decoration: line-through;
+}
