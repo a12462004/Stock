@@ -22,7 +22,9 @@
             </div>
           </div>
           </div>
-
+          <div class=col-sm-10>
+            <div id="main1" style="height:400px;"></div>
+          </div>
           <div>
             <div id="sencondTitle" class="col-sm-10">
               <h2 class="page-header" >淨值比</h2>
@@ -35,7 +37,7 @@
                   <th class="warning">最高價</th>
                   <th class="warning">最低價</th>
                   <th class="warning">收盤價</th>
-                  <th class="warning">本益比</th>
+                  <th class="warning">淨值比</th>
                 </thead>
                 <tbody>
                   <% for(var i=0; i<data.length; i++) {%>
@@ -56,7 +58,7 @@
                         <%= data[i].clos%>
                       </td>
                       <td>
-                        <%= data[i].pe_ratio%>
+                        <%= data[i].net_ratio%>
                       </td>
                     </tr>
                   <% } %>
@@ -70,5 +72,94 @@
         </div>
       </div>
     </div>
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+      $.ajax({
+              url: '/PBR/getChartData',
+              type: 'POST',
+              dataType: 'JSON',
+              data:{code:<%= data[0].code %>},
+              success: function(ChartData) {
+                var year = [];
+                var pe_ratio = [];
+                var net_ratio = [];
+                var open = [];
+                var up = [];
+                var down = [];
+                var clos = [];
+                for (var i = 0; i < ChartData.length; i++) {
+                  year.push(ChartData[i].date);
+                  pe_ratio.push(ChartData[i].pe_ratio);
+                  net_ratio.push(ChartData[i].net_ratio);
+                  open.push(ChartData[i].open);
+                  up.push(ChartData[i].up);
+                  down.push(ChartData[i].down);
+                  clos.push(ChartData[i].clos);
+                }
+                require.config({
+                  paths: {
+                    echarts: 'http://echarts.baidu.com/build/dist'
+                  }
+                });
+                require(
+                [
+                  'echarts',
+                  'echarts/chart/bar',
+                  'echarts/chart/line'
+                ],
+                function (ec) {
+                  var myChart = ec.init(document.getElementById('main1')); 
+                  var option = {
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['淨值比','月收盤價']
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        toolbox: {
+                            feature: {
+                                saveAsImage: {}
+                            }
+                        },
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: year
+                        },
+                        yAxis:[ {
+                            type: 'value',
+                            position:'left',
+                            name:'百分比'
+                        },{
+                            type: 'value',
+                            position:'right',
+                            name:'元'
+                        }],
+                        series: [
+                            {
+                                name:'淨值比',
+                                type:'line',
+                                stack: '淨值比',
+                                data: net_ratio
+                            },{
+                                name:'月收盤價',
+                                type:'line',
+                                yAxisIndex: 1,
+                                stack: '月收盤價',
+                                data: clos
+                            }
+                        ]
+                    };
+                  myChart.setOption(option); 
+               });
+              }
+            });
+    </script>
   </body>
 </html>

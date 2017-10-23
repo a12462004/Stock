@@ -46,7 +46,7 @@
                   <% for(var i=0; i<data.length; i++) {%>
                     <tr>
                       <td>
-                        <%= data[i].r_montly%>
+                        <%= data[i].date%>
                       </td>
                       <td>
                         <%= data[i].revenue%>
@@ -128,7 +128,8 @@
                             data: year
                         },
                         yAxis: {
-                            type: 'value'
+                            type: 'value',
+                            name:'元'
                         },
                         series: [
                             {
@@ -157,7 +158,8 @@
                         yAxis: {
                             type : 'value',
                             position: 'top',
-                            axisLabel:{formatter:'{value} %'},
+                            name:'百分比',
+                            axisLabel:{formatter:'{value}'},
                             splitLine: {lineStyle:{type:'dashed'}},
                         },
                         xAxis: {
@@ -169,7 +171,7 @@
                                 name:'年增率',
                                 type:'bar',
                                 itemStyle: {normal: {color:'rgba(250,70,100,1)'}},
-                                barWidth : 50,
+                                barWidth : 20,
                                 stack: '总量',
                                 label: {
                                     normal: {
@@ -198,8 +200,8 @@
                         },
                         yAxis: {
                             type : 'value',
-                            position: 'top',
-                            axisLabel:{formatter:'{value} 元'},
+                            name:'元',
+                            axisLabel:{formatter:'{value}'},
                             splitLine: {lineStyle:{type:'dashed'}},
                         },
                         xAxis: {
@@ -211,7 +213,7 @@
                                 name:'營收',
                                 type:'bar',
                                 itemStyle: {normal: {color:'rgba(200,70,100,1)'}},
-                                barWidth : 50,
+                                barWidth : 20,
                                 stack: '总額',
                                 label: {
                                     normal: {
@@ -227,75 +229,6 @@
                   myChart2.setOption(option2);
                   myChart3.setOption(option3);
                });
-              }
-            });
-    </script>
-    <script type="text/javascript">
-      $.ajax({
-              url: '/Revenue/getChartData',
-              type: 'POST',
-              dataType: 'JSON',
-              data:{code:<%= data[0].code %>},
-              success: function(ChartData) {
-                var year = [];
-                var growth = [];
-                var revenue = [];
-                for (var i = 0; i < ChartData.length; i++) {
-                  year.push(ChartData[i].r_montly);
-                  growth.push(ChartData[i].a_growth_rate);
-                  revenue.push(ChartData[i].revenue);
-                }
-                require.config({
-                  paths: {
-                    echarts: 'http://echarts.baidu.com/build/dist'
-                  }
-                });
-                require(
-                [
-                  'echarts',
-                  'echarts/chart/bar',
-                  'echarts/chart/line'
-                ],
-                function (ec) {
-                  var myChart = ec.init(document.getElementById('main1')); 
-                  var option = {
-                        tooltip: {
-                            trigger: 'axis'
-                        },
-                        legend: {
-                            data:['收盤價']
-                        },
-                        grid: {
-                            left: '3%',
-                            right: '4%',
-                            bottom: '3%',
-                            containLabel: true
-                        },
-                        toolbox: {
-                            feature: {
-                                saveAsImage: {}
-                            }
-                        },
-                        xAxis: {
-                            type: 'category',
-                            boundaryGap: false,
-                            data: ['201707','201708','201709','201710']
-                        },
-                        yAxis: {
-                            type: 'value'
-                        },
-                        series: [
-                            {
-                                name:'收盤價',
-                                type:'line',
-                                stack: '总量',
-                                data:[120, 132, 101, 134, 90, 230, 210]
-                            }
-                        ]
-                    };
-                };
-                myChart.setOption(option); 
-                });
               }
             });
     </script>
