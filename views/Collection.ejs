@@ -3,22 +3,22 @@
 <%- include header.ejs %> 
   <body>
     <%- include content_head.ejs %> 
-    <div class="container-fluid">
-      <div class="row">
+    <div class="container-fluid" >
+      <div class="row" >
         <% if(data.length == '0'){%>
           <h3 style="text-align: center;">您沒有收藏任何股票唷~</h3>
         <% }else { %>
-          <div class="text-center">
-            <div id="sencondTitle" class="col-sm-10">
+          
+            <div id="sencondTitle" class="col-sm-12">
               <h2 class="page-header" >收藏清單</h2>
             </div>
-           <div class="table-responsive col-sm-10">
+           <div class="table-responsive col-sm-12 ">
             <table class="table table-striped table-bordered" style="width:100%;font-size: 20px">
               <thead>
                 <tr>
                   <th class="warning" style="text-align: center;">證期會代碼</th>
-                  <th class="warning" style="text-align: center;">名稱</th>
-                  <th class="warning" style="text-align: center;">取消收藏</th>
+                  <th class="warning" style="text-align: center;">公司名稱</th>
+                  <th class="warning" style="text-align: center;"><span class="glyphicon glyphicon-trash"></span></th>
                 </tr>
               </thead>
               <tbody>
@@ -26,13 +26,13 @@
                   <tr>
                       <td style="width: 30%;text-align: center;"><a href="./CompanyProfile?code=<%= data[i].CollectedId%>"><%= data[i].CollectedId%></a></td>
                       <td style="width: 30%;text-align: center;"><a href="./CompanyProfile?code=<%= data[i].CollectedId%>"><%= data[i].company%></a></td>
-                      <td style="width: 20%;text-align: center;"><a onclick="del(this,'<%= data[i].CollectedId%>');">刪除</a></td>
+                      <td style="width: 20%;text-align: center;"><a onclick="del(this,'<%= data[i].CollectedId%>');"><span class="glyphicon glyphicon-remove" style="color: red;"></span></a></td>
                   </tr>
                 <% } %>
               </tbody>
            </table>
           </div>
-          </div>
+         
         </div>
       <% }%>
     </div>

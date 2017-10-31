@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#myNavbar" >
+<!-- navbar-fixed-top 是將navbar固定於網頁上方 -->
+<nav class="navbar navbar-default navbar-fixed-top" >  
+      <div class="container-fluid" >
+        <div class="navbar-header" >
+          <!-- <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#myNavbar" >
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="navbar navbar-brand" href="./">Stock +</a>
+          </button> -->
+          <a class="navbar navbar-brand" href="./"><img src="images/text.png" width="240" height="90" style=" padding: 20px 0px 0px 45px;"></a>
         </div>
 
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse collapse" >
         <div>         
             <div style="width: 15%;" id="FBlogin" class="nav navbar-right fb-login-button" data-max-rows="1" data-size="small" data-button-type="login_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="true" onlogout="checkLoginState();" onlogin="checkLoginState();">
             </div>
-            <form class="navbar-form navbar-right" role="search">
-              <div class="form-group">
-                <input class="typeahead tt-query form-control" id="search" spellcheck="false" autocomplete="off" name="typeahead" type="text" placeholder="Search..." />
+            <form class="navbar-form navbar-right" role="search" style="padding:10px 5px;">
+              <div class="form-group" style="padding-right: 10px;">
+                <img src="../images/search.png" style="vertical-align: middle;width: 40px;height: 30px;padding-right: 10px;"><input class="typeahead tt-query form-control" id="search" spellcheck="false" autocomplete="off" name="typeahead" type="text" placeholder="Search..." style="width: 150px;" />
               </div>
+
             </form>
            </div>
-          <ul class="nav navbar-nav navbar-right"  align="right" >
-            <li id="li1" style="display:none;"><a href="../Collection">收藏</a></li>
-                <li id="divide1" style="display:none;"><a>｜</a></li>
-            <li><a href="/CompanyProfile?code=1101">股票資訊</a></li>
+          <ul class="nav navbar-nav navbar-right"  align="right" style="padding: 5px;vertical-align: middle;">
+            <li id="li1" style="display:none;"><a href="../Collection" ><img src="../images/list.png" style="vertical-align: middle;width: 30px;height: 30px;">    收藏清單</a></li>
+            <li id="divide1" style="display:none;"><a>｜</a></li>
+            <li><a href="/CompanyProfile?code=1101"><img src="../images/stock_chart.png" style="vertical-align: middle;width: 30px;height: 30px;">    股票資訊</a></li>
             <li><a>｜</a></li>
-            <li><a href="article">知識文章</a></li> 
+            <li><a href="article"><img src="../images/stock_topic.png" style="vertical-align: middle;width: 30px;height: 30px;">    知識文章</a></li> 
             <li><a>｜</a></li>
-            <li><a href="test" target="_blank">題庫測驗</a></li> 
+            <li><a href="test" target="_blank"><img src="../images/exam.png" style="vertical-align: middle;width: 30px;height: 30px;">    題庫測驗</a></li> 
             <li><a>　</a></li>
           </ul>         
           </div>
@@ -49,7 +51,7 @@ window.onload = function() {
 };
 
 
-// This is called with the results from from FB.getLoginStatus().
+// This is called with the results from FB.getLoginStatus().
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
      testAPI();

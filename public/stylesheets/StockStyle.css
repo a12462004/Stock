@@ -1,17 +1,46 @@
   body {
+  position: relative;
   padding: 0px 100px;
   font: 15px "Comic Sans MS", cursive, sans-serif;
+  display: block;
+  background-image: url("https://image.freepik.com/free-vector/soft-background-with-a-cute-blue-watercolor-stain_1048-5169.jpg");
+  background-size:100%;
+  margin-top: 120px;
   }
+ 
+  th{
+    background-color: #f2f6c3
+  }
+
+  /*表格基.偶列的背景顏色  滑鼠游標移上去的顏色*/
+  tr:nth-child(even){background-color:  #f8f8fa}
+  tr:nth-child(odd){background-color:   #e7eff6}
+  tr:hover {background-color:  #d8fff4}
+
+  .sidebar_left li{
+    font-weight: bold;
+    color: #000000;
+  }
+
   #sencondTitle { 
       margin-top:15px;
       text-align:left;
   }
-  .container-fluid {
+  .navbar-collapse {
       padding-top: 20px;
       padding-bottom: 20px;
   }
+
+  .container-fluid{
+    padding-bottom: 20px;
+  }
+  
+  /*公司照片與名稱的區塊與上方navbar的距離*/
+  .text-center{
+    padding-top: 40px;
+  }
   .navbar {
-      padding-top: 10px;
+      padding-top: 5px;
       border: 0;
       border-radius: 0;
       margin-bottom: 0;
@@ -27,6 +56,7 @@
   .table{
     max-width: 2000px ;
     height: 200px ;
+
   }
   .valign {
     position: relative;
