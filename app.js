@@ -21,10 +21,6 @@ var test = require('./routes/test');
 var article = require('./routes/article');
 var article_content = require('./routes/article_content');
 var question = require('./routes/question');
-var question2 = require('./routes/question2');
-var question3 = require('./routes/question3');
-var question4 = require('./routes/question4');
-var question5 = require('./routes/question5');
 var grade = require('./routes/grade');
 var Why_invest = require('./routes/Why_invest');
 
@@ -58,10 +54,6 @@ app.use('/test',test);
 app.use('/article',article);
 app.use('/article_content',article_content);
 app.use('/question',question);
-app.use('/question2',question2);
-app.use('/question3',question3);
-app.use('/question4',question4);
-app.use('/question5',question5);
 app.use('/grade',grade);
 app.use('/Why_invest',Why_invest);
 

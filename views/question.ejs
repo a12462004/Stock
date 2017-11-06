@@ -15,51 +15,158 @@
 <body>
 <div class="jumbotron">
   <div class="content">
-    <h1 class="title">1、購買ETF與股票，成交後，皆須繳納手續費及證券交易稅，請問證券交易稅各別為多?</h1>
-    <div class="custom-radios" style="text-align: left;">
-      <div class="col-md-12">
-        <input type="radio" id="a1" name="q" value="a1">
-        <label for="a1">
-          <span>
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-          </span> 
-          <div class="label">ETF-0.4%、股票-0.6%</div>
-        </label>
+    <form name="form1" action="/grade" method="POST">
+      <% for(var i =0;i<data.length;i++){ %>
+        <% if(i==0){ %>
+          <div id="question_<%= i%>">
+            <h1 class="title"><%= i+1%>、<%= data[i].question%></h1>
+            <div class="custom-radios" style="text-align: left;">
+              <div class="col-md-12">
+                <input type="radio" id="<%= i+1%>_a1" name="q<%= i+1 %>" value="A">
+                <label for="<%= i+1%>_a1">
+                  <span>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                  </span> 
+                  <div class="label"><%= data[i].option1%></div>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <input type="radio" id="<%= i+1%>_a2" name="q<%= i+1 %>" value="B">
+                <label for="<%= i+1%>_a2">
+                  <span>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                  </span> 
+                  <div class="label"><%= data[i].option2%></div>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <input type="radio" id="<%= i+1%>_a3" name="q<%= i+1 %>" value="C">
+                <label for="<%= i+1%>_a3">
+                  <span>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                  </span> 
+                  <div class="label"><%= data[i].option3%></div>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <input type="radio" id="<%= i+1%>_a4" name="q<%= i+1 %>" value="D">
+                <label for="<%= i+1%>_a4">
+                  <span>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                  </span> 
+                  <div class="label"><%= data[i].option4%></div>
+                </label>
+              </div>
+            </div>
+          </div>
+        <% } else { %>
+          <div id="question_<%= i%>" style="display: none;">
+            <h1 class="title"><%= i+1%>、<%= data[i].question%></h1>
+            <div class="custom-radios" style="text-align: left;">
+              <div class="col-md-12">
+                <input type="radio" id="<%= i+1%>_a1" name="q<%= i+1 %>" value="A">
+                <label for="<%= i+1%>_a1">
+                  <span>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                  </span> 
+                  <div class="label"><%= data[i].option1%></div>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <input type="radio" id="<%= i+1%>_a2" name="q<%= i+1 %>" value="B">
+                <label for="<%= i+1%>_a2">
+                  <span>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                  </span> 
+                  <div class="label"><%= data[i].option2%></div>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <input type="radio" id="<%= i+1%>_a3" name="q<%= i+1 %>" value="C">
+                <label for="<%= i+1%>_a3">
+                  <span>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                  </span> 
+                  <div class="label"><%= data[i].option3%></div>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <input type="radio" id="<%= i+1%>_a4" name="q<%= i+1 %>" value="D">
+                <label for="<%= i+1%>_a4">
+                  <span>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                  </span> 
+                  <div class="label"><%= data[i].option4%></div>
+                </label>
+              </div>
+            </div>
+          </div>
+        <% } %>
+      <% } %>
+      <div class="container" style="line-height: 10vw;">
+        <input type="hidden" id="questionId" name="questionId" value="<%= data[0].id%>,<%= data[1].id %>,<%= data[2].id%>,<%= data[3].id%>,<%= data[4].id%>">
+        <a onclick="pre()" name="pre" class="btn btn-default btn-lg" style="display: none;"><span class="glyphicon glyphicon-chevron-left"></span>上一題</a>
+        <a onclick="next()" name="next" class="btn btn-default btn-lg">下一題<span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a href="javascript:document.form1.submit();" name="sent" class="btn btn-success btn-lg" style="display: none;">確定送出<span class="glyphicon glyphicon-ok-circle"></span></a>
       </div>
-      <div  class="col-md-12">
-        <input type="radio" id="a2" name="q" value="a2">
-        <label for="a2">
-          <span>
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-          </span> 
-          <div class="label">ETF-0.1%、股票-0.3%</div>
-        </label>
-      </div>
-      <div class="col-md-12">
-        <input type="radio" id="a3" name="q" value="a3">
-        <label for="a3">
-          <span>
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-          </span> 
-          <div class="label">ETF-0.3%、股票-0.1%</div>
-        </label>
-      </div>
-      <div class="col-md-12">
-        <input type="radio" id="a4" name="q" value="a4">
-        <label for="a4">
-          <span>
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-          </span>
-          <div class="label">ETF-0.6%、股票-0.4%</div>
-        </label>
-      </div>
-    </div>
-    <div class="container" style="line-height: 10vw;">
-      <a href="question" class="btn btn-default btn-lg" style="display: none;"><span class="glyphicon glyphicon-chevron-left"></span>上一題</a>
-      <a href="question2" class="btn btn-default btn-lg">下一題<span class="glyphicon glyphicon-chevron-right"></span></a>
-      <a href="grade" class="btn btn-success btn-lg" style="display: none;">確定送出<span class="glyphicon glyphicon-ok-circle"></span></a>
-    </div>
+    </form>
   </div>
 </div>
+<script type="text/javascript">
+  var after = 0;
+  var now = 0;
+  var before = 0;
+  function pre() {
+    //把前一題的題目洗掉，顯示新的題目，利用jquery。
+   //記下答案清單
+    
+    after =now;
+    before = now-1;
+    now = now -1;
+    $("#question_"+after).css("display","none");
+    $("#question_"+now).css("display","block");
+    if(now ==0 ){
+      $('[name="pre"]').css("display","none");
+      $('[name="next"]').css("display","");
+      $('[name="sent"]').css("display","none");
+    }
+    else if(now !=4){
+      $('[name="pre"]').css("display","");
+      $('[name="next"]').css("display","");
+      $('[name="sent"]').css("display","none");
+    }
+    else if(now == 4){
+      $('[name="pre"]').css("display","");
+      $('[name="next"]').css("display","none");
+      $('[name="sent"]').css("display","");
+    }
+
+  }
+  function next() {
+    //把前一題的題目洗掉，顯示新的題目，利用jquery。
+   //記下答案清單
+    after =now+1;
+    before = now;
+    now = now +1;
+    $("#question_"+before).css("display","none");
+    $("#question_"+after).css("display","block");
+    if(now ==0 ){
+      $('[name="pre"]').css("display","none");
+      $('[name="next"]').css("display","");
+      $('[name="sent"]').css("display","none");
+    }
+    else if(now !=4){
+      $('[name="pre"]').css("display","");
+      $('[name="next"]').css("display","");
+      $('[name="sent"]').css("display","none");
+    }
+    else if(now == 4){
+      $('[name="pre"]').css("display","");
+      $('[name="next"]').css("display","none");
+      $('[name="sent"]').css("display","");
+    }
+
+  }
+</script>
 </body>
 </html>

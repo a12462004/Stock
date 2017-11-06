@@ -4,7 +4,7 @@ var db = require('./lib/db.js');
 var sql = require('mssql');
 router.get('/', function(req, res, next) {
 	var id = req.headers.cookie.split(';'); //split 切割字串
-	id = id[2].slice(4); //取fb的id，slice(字串從第幾位開始取)
+	id = id[1].slice(4); //取fb的id，slice(字串從第幾位開始取)
 	sql.connect(db,function(err){
 		if(err) console.log(err);
 		var request = new sql.Request();
