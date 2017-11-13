@@ -8,9 +8,6 @@
   margin-top: 120px;
   }
  
-  th{
-    background-color: #f2f6c3
-  }
 
   /*表格基.偶列的背景顏色  滑鼠游標移上去的顏色*/
   tr:nth-child(even){background-color:  #f8f8fa}
