@@ -7,10 +7,6 @@ li{
 </style>
 
 <div id="sidebar_left" class="col-sm-2 " style="font-size: 100%;height: 2000px;">
-          <ul class="nav nav-sidebar">
-            <li><h3 style="color: #000000;">個股概覽</span></h3></li>
-            <li><a href="../Stock?code=<%= data[0].code %>">個股概覽</a></li>
-          </ul>
           <ul class="nav nav-sidebar" >
             <li><h3>基本分析</h3></li>
             <li><a href="../CompanyProfile?code=<%= data[0].code %>" >基本資料</a></li>
@@ -21,12 +17,24 @@ li{
             <li><a href="../PBR?code=<%= data[0].code %>">淨值比</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><h3><a href="#">技術分析</a></h3></li>
+            <li><h3>籌碼分析</h3></li>
+            <li><a href="../Chairman?code=<%= data[0].code%>">最新董監持股</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><h3>籌碼分析</h3></li>
-            <li><a href="../Chairman?code=<%= data[0].code%>">董監持股</a></li>
-            <li><a href="#">三大法人</a></li>
+            <li><h3>模擬下單區</h3></li>
+            <li><a href="https://www.cmoney.tw/vt/"  target="_blank">股市大富翁</a></li>
+            <li><a href="https://funds.concords.com.tw/report/report-1.aspx"  target="_blank">康和投顧</a></li>
+            <li><a href="http://ntd2u.net/forum-20-1.html"  target="_blank">正通股民學苑</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><h3>個股類研究報告</h3></li>
+            <li><a href="https://sim.entrust.com.tw/index.do"  target="_blank">華南投顧</a></li>
+            <li><a href="http://stockvirtual.info/index.php"  target="_blank">模擬股市</a></li>
+            <li><a href="http://www.wearn.com/amazing/gift.asp"  target="_blank">聚財網</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><h3>影音:本週盤勢分析</h3></li>
+            <li><a href="../video">華南學苑</a></li>
           </ul>
         </div>
 </html>

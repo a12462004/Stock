@@ -9,48 +9,31 @@ router.get('/', function(req, res, next) {
 		res.redirect("/CompanyProfile?code=1101");
 	}
 	else{
-		sql.connect(db,function(err){
-			if(err) console.log(err);
-			var request = new sql.Request();
-			request.query("SELECT * FROM CompanyProfile WHERE code='"+code+"'",function(err,result){
-				if(err){
-					console.log(err);
-					res.send(err);
-				}
-				sql.close();
-				if(result.rowsAffected =='0'){ //若為0代表輸入的code並沒有資料可以顯示，跳轉頁面到CompanyProfile的1101
+		new sql.ConnectionPool(db).connect().then(pool => {
+  			return pool.request().query("SELECT TOP 1 CompanyProfile.*,StockPrice.trading_volume,StockPrice.clos,StockPrice.[open],StockPrice.up,StockPrice.down,IndustryType.industry_name FROM (SELECT * FROM CompanyProfile) AS CompanyProfile INNER JOIN (SELECT * FROM StockPrice) AS StockPrice ON CompanyProfile.code = StockPrice.code INNER JOIN (SELECT * FROM IndustryType) AS IndustryType ON CompanyProfile.industry = IndustryType.industry_id WHERE CompanyProfile.code='"+code+"' ORDER BY StockPrice.price_date DESC")
+  		}).then(result => {
+    		let rows = result.recordset
+   			 res.setHeader('Access-Control-Allow-Origin', '*')
+   		 	// res.status(200).json(rows);
+   			 // sql.close();
+   			 if(result.rowsAffected =='0'){ //若為0代表輸入的code並沒有資料可以顯示，跳轉頁面到CompanyProfile的1101
 					res.redirect("/CompanyProfile?code=1101");
 				}
 				else{
-				res.render('./CompanyProfile', {title: '股起勇氣', data: result.recordset });
-			}
-			});
-		});
+				res.render('./CompanyProfile', {title: '股起勇氣', data: rows });}
+  			}).catch(err => {
+   			 res.status(500).send({ message: err})
+   			 // sql.close();
+  			});
 	}
 });
-/*GET companyinfo page*/
-// router.get('/:code',function(req,res,next){
-// 	sql.connect(db,function(err){
-// 		if(err) console.log(err);
-// 		var request = new sql.Request();
-// 		request.input('code',sql.NVarChar(50),req.params.code);
-// 		request.query("SELECT * FROM CompanyProfile WHERE code=@code",function(err,result){
-// 			if(err){
-// 				console.log(err);
-// 				res.send(err);
-// 			}
-// 			sql.close();
-// 			res.render('./CompanyProfile', {title: '股起勇氣', data: result.recordset });
-// 		});
-// 	});
-// });
 
 /*收藏功能*/
 router.post('/conllection',function(req,res,next){
 	var act = req.body.act;
 	var CollectedId = req.body.code;
 	var id = req.headers.cookie.split(';'); //split 切割字串
-	id = id[2].slice(4); //取fb的id，slice(字串從第幾位開始取)
+	id = id[1].slice(4); //取fb的id，slice(字串從第幾位開始取)
 	// console.log(id);
 	if(act =='add'){
 		sql.connect(db,function(err){

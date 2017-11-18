@@ -31,7 +31,7 @@ router.post('/', function(req, res, next) {
 					res.send(err);
 				}
 				sql.close();
-				console.log(result.recordset);
+				// console.log(result.recordset);
 				res.render('./question', {title: '股起勇氣', data: result.recordset });
 			});
 		});

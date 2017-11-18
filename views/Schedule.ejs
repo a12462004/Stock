@@ -13,7 +13,6 @@
             <table class="table table-striped" style="width:100%;font-size: 20px">
               <thead>
                 <tr>
-                  <th class="warning">公司簡稱</th>
                   <th class="warning">日期</th>
                   <th class="warning">類別</th>
                   <th class="warning">筆記</th>
@@ -25,9 +24,6 @@
               <tbody>
               <% for(var i=0; i<data.length; i++) {%>
                 <tr>
-                  <td>
-                  <%= data[i].code %>
-                  </td>
                   <td><%= data[i].event_date %></td>
                   <td><%= data[i].event_type %></td>
                   <td><%= data[i].event_note %></td>

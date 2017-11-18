@@ -9,42 +9,25 @@ router.get('/', function(req, res, next) {
 		res.redirect("/Schedule?code=1101");
 	}
 	else{
-		sql.connect(db,function(err){
-			if(err) console.log(err);
-			var request = new sql.Request();
-			request.query("SELECT * FROM Schedule WHERE code='"+code+"'",function(err,result){
-				if(err){
-					console.log(err);
-					res.send(err);
-				}
-				// console.log(result.recordset);
-				sql.close();
-				if(result.rowsAffected =='0'){ //若為0代表輸入的code並沒有資料可以顯示，跳轉頁面到Schedule的1101
+		new sql.ConnectionPool(db).connect().then(pool => {
+  			return pool.request().query("SELECT * FROM Schedule WHERE code='"+code+"'")
+  		}).then(result => {
+    		let rows = result.recordset
+   			 res.setHeader('Access-Control-Allow-Origin', '*')
+   		 	// res.status(200).json(rows);
+   			 // sql.close();
+   			 if(result.rowsAffected =='0'){ //若為0代表輸入的code並沒有資料可以顯示，跳轉頁面到Schedule的1101
 					res.redirect("/Schedule?code=1101");
 				}
-				else{
-				res.render('./Schedule', {title:'股起勇氣',data: result.recordset });
-				}
-			});
-		});
+			 else{
+				res.render('./Schedule', {title:'股起勇氣',data: rows });
+			 }
+  			}).catch(err => {
+   			 res.status(500).send({ message: "${err}"})
+   			 // sql.close();
+  			});
 	}
 });
-/*GET shedule page*/
-// router.get('/:code',function(req,res,next){
-// 	sql.connect(db,function(err){
-// 		if(err) console.log(err);
-// 		var request = new sql.Request();
-// 		request.input('code',sql.NVarChar(50),req.params.code);
-// 		request.query("SELECT * FROM Schedule WHERE code=@code",function(err,result){
-// 			if(err){
-// 				console.log(err);
-// 				res.send(err);
-// 			}
-// 			sql.close();
-// 			res.render('./Schedule', {title:'股起勇氣',data: result.recordset });
-// 		});
-// 	});
-// });
 
 
 module.exports = router;

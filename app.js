@@ -13,7 +13,6 @@ var Collection = require('./routes/Collection');
 var DividendPolicy = require('./routes/DividendPolicy');
 var Revenue = require('./routes/Revenue');
 var Chairman = require('./routes/Chairman');
-var Stock = require('./routes/Stock');
 var PER = require('./routes/PER');
 var PBR = require('./routes/PBR');
 var test = require('./routes/test');
@@ -22,6 +21,7 @@ var article_content = require('./routes/article_content');
 var question = require('./routes/question');
 var grade = require('./routes/grade');
 var Why_invest = require('./routes/Why_invest');
+var video = require('./routes/video');
 
 
 var app = express();
@@ -45,7 +45,6 @@ app.use('/Collection',Collection);
 app.use('/DividendPolicy',DividendPolicy);
 app.use('/Revenue',Revenue);
 app.use('/Chairman',Chairman);
-app.use('/Stock',Stock);
 app.use('/PER',PER);
 app.use('/PBR',PBR);
 app.use('/test',test);
@@ -54,6 +53,7 @@ app.use('/article_content',article_content);
 app.use('/question',question);
 app.use('/grade',grade);
 app.use('/Why_invest',Why_invest);
+app.use('/video',video);
 
 
 // catch 404 and forward to error handler

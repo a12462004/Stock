@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include header.ejs %> 
+<%- include header.ejs %>
+<title><%= title %></title> 
   <body>
     <%- include content_head.ejs %> 
     <div class="container-fluid">
       <div class="row">
         <%- include sidebar.ejs %> 
-          <div class=col-sm-10>
+        
+        <div class="text-center" >
+          <div class=col-sm-10 style="background-color: #f8f8fa;opacity: 0.9;">
             <div id="upper_row" class="row">
-            <div class="col-xs-6 " >
-              <img src="../images/taiwancement.png" class=" img-circle" style="float:right;width:300px; height:300;" >
-            </div>  
-            <div class="col-xs-6 " style="height:200px;width:400px;text-align:left;">
-              <h3 class="valign">
-              <%= data[0].code %>
-              <br/><br/><%= data[0].company %>
-              </h3>
+                <%- include up_contend.ejs %> 
+              
             </div>
           </div>
-          </div>
           <div class=col-sm-10>
-            <div id="main" style="height:400px;"></div>
+            <div id="main" style="height:400px;padding-top: 20px;"></div>
           </div>
           <div class="col-sm-10">
             <div id="sencondTitle">
