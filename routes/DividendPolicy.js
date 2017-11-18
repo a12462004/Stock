@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 	}
 	else{
 		new sql.ConnectionPool(db).connect().then(pool => {
-  			return pool.request().query("SELECT [code],[company],[cash_dividend],[surplus],[plot],YEAR([shareholders_date])-1 as date,(surplus+plot) as stock_dividend FROM [DividendPolicy] WHERE code='"+code+"' ORDER BY date DESC")
+  			return pool.request().query("SELECT DividendPolicy.*,CompanyProfile.capital,StockPrice.[open],StockPrice.up,StockPrice.down,StockPrice.clos,StockPrice.trading_volume,IndustryType.industry_name FROM (SELECT [code],[company],[cash_dividend],[surplus],[plot],YEAR([shareholders_date])-1 as date,(surplus+plot) as stock_dividend FROM [DividendPolicy] WHERE [DividendPolicy].code='"+code+"') AS DividendPolicy INNER JOIN (SELECT code,industry,capital FROM CompanyProfile WHERE code='"+code+"') AS CompanyProfile ON [DividendPolicy].code = CompanyProfile.code INNER JOIN (SELECT TOP 1 * FROM StockPrice WHERE code = '"+code+"' ORDER BY StockPrice.price_date DESC) AS StockPrice ON CompanyProfile.code = StockPrice.code INNER JOIN (SELECT * FROM IndustryType) AS IndustryType ON CompanyProfile.industry = IndustryType.industry_id ORDER BY DividendPolicy.[date] DESC")
   		}).then(result => {
     		let rows = result.recordset
    			 res.setHeader('Access-Control-Allow-Origin', '*')
