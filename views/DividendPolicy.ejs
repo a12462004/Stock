@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include header.ejs %>
+
 <title><%= title %></title> 
   <body>
     <%- include content_head.ejs %> 
@@ -23,17 +24,19 @@
               <h2 class="page-header" >股利政策</h2>
             </div>
             <div class="table-responsive">
-              <table class="table table-striped table-bordered" style="width:100%;font-size: 20px">
+              <table class="table table-striped table-bordered" style="width:100%;font-size: 20px;">
                 <thead>
                   <th class="warning">年度</th>
                   <th class="warning">現金股利</th>
                   <th class="warning">股票股利</th>
                   <th class="warning">盈配</th>
                   <th class="warning">積配</th>
+
                 </thead>
                 <tbody>
                   <% for(var i=0; i<data.length; i++) {%>
-                    <tr>
+                  <% if (i%2==0) {%>
+                    <tr class="tr1" style="background-color: #e7eff6;">
                       <td>
                         <%= data[i].date%>
                       </td>
@@ -50,7 +53,29 @@
                         <%= data[i].plot%>
                       </td>
                     </tr>
+
+                  <% }else{ %>
+
+                  <tr style="background-color: #f8f8fa;">
+                      <td>
+                        <%= data[i].date%>
+                      </td>
+                      <td>
+                        <%= data[i].cash_dividend%>
+                      </td>
+                      <td>
+                        <%= data[i].stock_dividend%>
+                      </td>
+                      <td>
+                        <%= data[i].surplus%>
+                      </td>
+                      <td>
+                        <%= data[i].plot%>
+                      </td>
+                    </tr>
+
                   <% } %>
+                 <% } %>
                 </tbody>
               </table>
             </div>
