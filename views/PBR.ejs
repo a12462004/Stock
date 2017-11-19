@@ -34,7 +34,29 @@
                 </thead>
                 <tbody>
                   <% for(var i=0; i<data.length; i++) {%>
-                    <tr>
+                   <% if (i%2==0) {%>
+                    <tr class="tr1" style="{background-color: #e7eff6};">
+                      <td>
+                        <%= data[i].date%>
+                      </td>
+                      <td>
+                        <%= data[i].open%>
+                      </td>
+                      <td>
+                        <%= data[i].up%>
+                      </td>
+                      <td>
+                        <%= data[i].down%>
+                      </td>
+                      <td>
+                        <%= data[i].clos%>
+                      </td>
+                      <td>
+                        <%= data[i].net_ratio%>
+                      </td>
+                    </tr >
+                     <% }else{ %>
+                     <tr class="tr1" style="background-color: #f8f8fa;">
                       <td>
                         <%= data[i].date%>
                       </td>
@@ -54,6 +76,7 @@
                         <%= data[i].net_ratio%>
                       </td>
                     </tr>
+                    <% } %>
                   <% } %>
                 </tbody>
               </table>

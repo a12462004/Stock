@@ -14,6 +14,11 @@
   tr:nth-child(odd){background-color:   #e7eff6}
   tr:hover {background-color:  #d8fff4}
 
+  .tr1 tr:hover{
+    background-color:  #d8fff4;
+  }
+
+
   .sidebar_left li{
     font-weight: bold;
     color: #000000;
