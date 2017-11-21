@@ -15,7 +15,7 @@
               
             </div>
           </div>
-          <div class=col-sm-10>
+          <div class=col-sm-10 style="padding-top:20px;">
             <div id="main1" style="height:400px;padding-top: 20px;"></div>
           </div>
           <div>
@@ -126,11 +126,25 @@
                 function (ec) {
                   var myChart = ec.init(document.getElementById('main1')); 
                   var option = {
+                        backgroundColor:'rgba(255, 255, 255, 0.3)',
+                        title:{
+                          text:'淨值比',
+                          x:'center',
+                          textStyle:{
+                            fontSize:18,
+                            fontWeight:'bolder',
+                            color: "#000000",
+                            fontFamily:'DFKai-sb'
+                            // fontFamily:'Microsoft YaHei'
+                          }
+                        },
                         tooltip: {
                             trigger: 'axis'
                         },
                         legend: {
-                            data:['淨值比','月收盤價']
+                            data:['淨值比','月收盤價'],
+                            x:'right',
+                            padding:[10,50,0]
                         },
                         grid: {
                             left: '3%',

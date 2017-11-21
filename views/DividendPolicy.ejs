@@ -16,7 +16,7 @@
               
             </div>
           </div>
-          <div class=col-sm-10>
+          <div class=col-sm-10 style="padding-top:20px;">
             <div id="main" style="height:400px;padding-top: 20px;"></div>
           </div>
           <div class="col-sm-10">
@@ -113,6 +113,18 @@
               function (ec) {
                 var myChart = ec.init(document.getElementById('main')); 
                 var option = {
+                    backgroundColor:'rgba(255, 255, 255, 0.3)',
+                    title:{
+                      text:'股利政策',
+                      x:'center',
+                      textStyle:{
+                        fontSize:18,
+                        fontWeight:'bolder',
+                        color: "#000000",
+                        fontFamily:'DFKai-sb'
+                        // fontFamily:'Microsoft YaHei'
+                      }
+                    },
                     tooltip : {
                         trigger: 'axis',
                         axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -120,7 +132,9 @@
                         }
                     },
                     legend: {
-                        data:['現金股利','股票股利']
+                        data:['現金股利','股票股利'],
+                        x:'right',
+                        padding:[10,50,0]
                     },
                     grid: {
                         left: '3%',

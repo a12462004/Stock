@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 	}
 	else{
 		new sql.ConnectionPool(db).connect().then(pool => {
-  			return pool.request().query("SELECT * FROM Schedule WHERE code='"+code+"'")
+  			return pool.request().query("SELECT code,convert(varchar, event_date, 111) AS event_date,event_type,event_note,convert(varchar, [time], 108) AS event_time,place,content FROM Schedule WHERE code='"+code+"' ORDER BY event_date DESC")
   		}).then(result => {
     		let rows = result.recordset
    			 res.setHeader('Access-Control-Allow-Origin', '*')
