@@ -22,6 +22,13 @@ var question = require('./routes/question');
 var grade = require('./routes/grade');
 var Why_invest = require('./routes/Why_invest');
 var video = require('./routes/video');
+var What_is_the_stock = require('./routes/What_is_the_stock');
+var What_is_the_K_line = require('./routes/What_is_the_K_line');
+var What_is_ETF = require('./routes/What_is_ETF');
+var Investment_and_speculation = require('./routes/Investment_and_speculation');
+var How_to_buy_stock = require('./routes/How_to_buy_stock');
+var Zero_start = require('./routes/Zero_start');
+var One_stock = require('./routes/One_stock');
 
 
 var app = express();
@@ -54,6 +61,13 @@ app.use('/question',question);
 app.use('/grade',grade);
 app.use('/Why_invest',Why_invest);
 app.use('/video',video);
+app.use('/What_is_the_stock',What_is_the_stock);
+app.use('/What_is_the_K_line',What_is_the_K_line);
+app.use('/What_is_ETF',What_is_ETF);
+app.use('/Investment_and_speculation',Investment_and_speculation);
+app.use('/How_to_buy_stock',How_to_buy_stock);
+app.use('/Zero_start',Zero_start);
+app.use('/One_stock',One_stock);
 
 
 // catch 404 and forward to error handler
