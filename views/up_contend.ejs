@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <div class="col-xs-10 " >
+            <div style="float:left;width:80%">
               <ul class="nav navbar-nav navbar-left"  align="left" style="padding-left: 10px;">
-                <header >
                   <h2 class="page-title">
                     <img src="../images/logo_inside.png" style="width: 70px;height: 60px;">
                       <%= data[0].company %>
                       <span></span>(<%= data[0].code %>)
                   </h2>
-                  <p>資料更新日期：<%= data[0].updateDate%></p>
-                </header>
               </ul>
+            </div>
+            <div style="float:left;width:20%;padding-top:55px;">
+                  <p>資料更新日期：<%= data[0].updateDate%></p>
+                </div>
               <div style="padding-left: 10px;">
                 <table class='table borderless' style="width:100%;font-size: 18px;border-top:3px #5f9ea0 solid;border-bottom:3px #5f9ea0 solid;" cellpadding="10" border='0'>
                   <thead>

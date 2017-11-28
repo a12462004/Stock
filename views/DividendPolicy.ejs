@@ -113,12 +113,12 @@
               function (ec) {
                 var myChart = ec.init(document.getElementById('main')); 
                 var option = {
-                    backgroundColor:'rgba(255, 255, 255, 0.3)',
+                    backgroundColor:'rgba(255, 255, 255, 0.5)',
                     title:{
                       text:'股利政策',
                       x:'center',
                       textStyle:{
-                        fontSize:18,
+                        fontSize:26,
                         fontWeight:'bolder',
                         color: "#000000",
                         fontFamily:'DFKai-sb'
@@ -134,7 +134,13 @@
                     legend: {
                         data:['現金股利','股票股利'],
                         x:'right',
-                        padding:[10,50,0]
+                        padding:[35,50,0],
+                        textStyle:{
+                        fontSize:18,
+                        color: "#000000",
+                        fontFamily:'DFKai-sb'
+                        // fontFamily:'Microsoft YaHei'
+                      }
                     },
                     grid: {
                         left: '3%',
