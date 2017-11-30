@@ -6,6 +6,7 @@ var sql = require('mssql');
 router.get('/', function(req, res, next) {
 	var code = req.query.code;
 	if(code == undefined){ //若為undefined代表沒有輸入code，直接跳轉頁面到CompanyProfile的1101
+		console.log('undefined!!');
 		res.redirect("/CompanyProfile?code=1101");
 	}
 	else{
@@ -17,6 +18,7 @@ router.get('/', function(req, res, next) {
    		 	// res.status(200).json(rows);
    			 // sql.close();
    			 if(result.rowsAffected =='0'){ //若為0代表輸入的code並沒有資料可以顯示，跳轉頁面到CompanyProfile的1101
+   			 		console.log('no data');
 					res.redirect("/CompanyProfile?code=1101");
 				}
 				else{

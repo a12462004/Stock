@@ -16,8 +16,8 @@ router.get('/', function(req, res, next) {
    			 res.setHeader('Access-Control-Allow-Origin', '*')
    		 	// res.status(200).json(rows);
    			 // sql.close();
-   			 if(result.rowsAffected =='0'){ //若為0代表輸入的code並沒有資料可以顯示，跳轉頁面到CompanyProfile的1101
-					res.redirect("/Revenue?code=1101");
+   			 if(result.rowsAffected =='0'){ //若為0代表輸入的code並沒有資料可以顯示，跳轉頁面到Revenue的1101
+          res.redirect("/Revenue?code=1101");
 				}
 				else{
 				res.render('./Revenue', {title: '股起勇氣', data: rows });
