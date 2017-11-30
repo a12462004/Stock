@@ -32,11 +32,11 @@
               <table class="table table-striped table-bordered" style="width:100%;font-size: 20px">
                 <thead>
                   <th class="warning">年月</th>
-                  <th class="warning">單月營收</th>
-                  <th class="warning">單月月增率</th>
-                  <th class="warning">單月年增率</th>
-                  <th class="warning">累計營收</th>
-                  <th class="warning">累計年增率</th>
+                  <th class="warning">單月營收(千元)</th>
+                  <th class="warning">單月月增率(%)</th>
+                  <th class="warning">單月年增率(%)</th>
+                  <th class="warning">累計年增率(%)</th>
+                  <th class="warning">累計營收(千元)</th>
                 </thead>
                 <tbody>
                   <% for(var i=0; i<data.length; i++) {%>
@@ -257,7 +257,7 @@
                         },
                         yAxis: {
                             type : 'value',
-                            name:'元',
+                            name:'千元',
                             axisLabel:{formatter:'{value}'},
                             splitLine: {lineStyle:{type:'dashed'}},
                         },
