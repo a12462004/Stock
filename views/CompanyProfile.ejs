@@ -56,9 +56,9 @@
                   </tr>
                   <tr>
                     <th class="warning">網址</th>
-                    <td><%= data[i].website %></td>
+                    <td><a href="<%= data[i].website %>"><%= data[i].website %></a></td>
                     <th class="warning">電子信箱</th>
-                    <td><%= data[i].e_mail %></td>
+                    <td><a href="mailto:<%= data[i].e_mail %>"><%= data[i].e_mail %></a></td>
                   </tr>
                   <tr>
                     <th class="warning">董事長</th>
@@ -75,7 +75,7 @@
                   <tr>
                     <th class="warning">員工人數</th>
                     <td><%= data[i].employees %></td>
-                    <th class="warning">實收資本額(元)</th>
+                    <th class="warning">實收資本額(百萬)</th>
                     <td><%= data[i].capital %></td>
                   </tr>
                   <tr>
