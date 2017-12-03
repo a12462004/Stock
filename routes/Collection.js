@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 	sql.connect(db,function(err){
 		if(err) console.log(err);
 		var request = new sql.Request();
+		//找到符合fbId的收藏資料和公司名稱和證期會代碼
 		request.query("SELECT * FROM (SELECT CollectedId FROM Collection WHERE fbId = '"+id+"') AS collection INNER JOIN (SELECT code,company FROM companyProfile) AS company ON collection.CollectedId=company.code",function(err,result){
 			if(err){
 				console.log(err);

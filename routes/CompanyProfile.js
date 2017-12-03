@@ -11,14 +11,18 @@ router.get('/', function(req, res, next) {
 	}
 	else{
 		new sql.ConnectionPool(db).connect().then(pool => {
-  			return pool.request().query("SELECT TOP 1 CompanyProfile.code,CompanyProfile.company,CompanyProfile.listed_type,convert(varchar,CompanyProfile.listed_date, 111)AS listed_date ,CompanyProfile.industry,CompanyProfile.tax,CompanyProfile.isin,CompanyProfile.telephone,CompanyProfile.fax,CompanyProfile.website,CompanyProfile.e_mail,CompanyProfile.chairman,CompanyProfile.general,CompanyProfile.spokes,CompanyProfile.controller,Replace(CONVERT(NVARCHAR(20),CAST(CompanyProfile.employees AS money),1),'.00','') AS employees,Replace(CONVERT(NVARCHAR(20),CEILING(CAST(CompanyProfile.capital AS money)/1000000),1),'.00','') AS capital,convert(varchar,CompanyProfile.founded, 111)AS founded,StockPrice.price_date AS updateDate,Replace(CONVERT(NVARCHAR(20),CAST(StockPrice.trading_volume AS money),1),'.00','') AS trading_volume,StockPrice.clos,StockPrice.[open],StockPrice.up,StockPrice.down,IndustryType.industry_name FROM (SELECT * FROM CompanyProfile) AS CompanyProfile INNER JOIN (SELECT * FROM StockPrice) AS StockPrice ON CompanyProfile.code = StockPrice.code INNER JOIN (SELECT * FROM IndustryType) AS IndustryType ON CompanyProfile.industry = IndustryType.industry_id WHERE CompanyProfile.code='"+code+"' ORDER BY StockPrice.price_date DESC")
+			//CAST將數值轉換成money型態
+			//CONVERT(NVARCHAR(20),value,1)轉換成三位一個逗號分隔
+			//Replace(value,'.00','')將money型態產生的小數點後面刪掉
+			//CEILING(value,1)無條件進位到整數
+  			return pool.request().query("SELECT TOP 1 CompanyProfile.code,CompanyProfile.company,CompanyProfile.listed_type,convert(varchar,CompanyProfile.listed_date, 111)AS listed_date ,CompanyProfile.industry,CompanyProfile.tax,CompanyProfile.isin,CompanyProfile.telephone,CompanyProfile.fax,CompanyProfile.website,CompanyProfile.e_mail,CompanyProfile.chairman,CompanyProfile.general,CompanyProfile.spokes,CompanyProfile.controller,StockPrice.pe_ratio,StockPrice.net_ratio,Replace(CONVERT(NVARCHAR(20),CAST(Revenue.revenue AS money),1),'.00','') AS revenue,Replace(CONVERT(NVARCHAR(20),CAST(CompanyProfile.employees AS money),1),'.00','') AS employees,Replace(CONVERT(NVARCHAR(20),CEILING(CAST(CompanyProfile.capital AS money)/1000000),1),'.00','') AS capital,convert(varchar,CompanyProfile.founded, 111)AS founded,StockPrice.price_date AS updateDate,Replace(CONVERT(NVARCHAR(20),CAST(StockPrice.trading_volume AS money),1),'.00','') AS trading_volume,StockPrice.clos,StockPrice.[open],StockPrice.up,StockPrice.down,IndustryType.industry_name FROM (SELECT * FROM CompanyProfile) AS CompanyProfile INNER JOIN (SELECT * FROM StockPrice) AS StockPrice ON CompanyProfile.code = StockPrice.code INNER JOIN (SELECT * FROM IndustryType) AS IndustryType ON CompanyProfile.industry = IndustryType.industry_id  INNER JOIN (SELECT TOP 1 * FROM Revenue WHERE code='"+code+"' ORDER BY Revenue.r_montly DESC) AS Revenue ON CompanyProfile.code = Revenue.code WHERE CompanyProfile.code='"+code+"' ORDER BY StockPrice.price_date DESC")
   		}).then(result => {
     		let rows = result.recordset
    			 res.setHeader('Access-Control-Allow-Origin', '*')
    		 	// res.status(200).json(rows);
    			 // sql.close();
    			 if(result.rowsAffected =='0'){ //若為0代表輸入的code並沒有資料可以顯示，跳轉頁面到CompanyProfile的1101
-   			 		console.log('no data');
+   			 		console.log(rows);
 					res.redirect("/CompanyProfile?code=1101");
 				}
 				else{

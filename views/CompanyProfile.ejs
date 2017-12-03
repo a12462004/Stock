@@ -21,7 +21,7 @@
               <h2 class="page-header" >公司基本資料</h2>
             </div>
             <div class="table-responsive col-sm-10">
-              <table class="table table-striped table-bordered" style="width:100%;font-size: 20px">
+              <table class="CompanyTable table table-striped table-bordered" style="width:100%;font-size: 20px">
                 <thead>
                 <% for(var i=0; i<data.length; i++) {%>
                   <tr>
@@ -38,7 +38,7 @@
                   </tr>
                   <tr>
                     <th class="warning">產業類別編號</th>
-                    <td><%= data[i].industry %></td>
+                    <td><%= data[i].industry_name %></td>
                     <th class="warning">會計月份</th>
                     <td><%= data[i].accounting %></td>
                   </tr>
@@ -49,16 +49,16 @@
                     <td><%= data[i].isin %></td>
                   </tr>
                   <tr>
-                    <th class="warning">電話</th>
-                    <td><%= data[i].telephone %></td>
-                    <th class="warning">傳真</th>
-                    <td><%= data[i].fax %></td>
+                    <th class="warning">本益比 </th>
+                    <td><%= data[i].pe_ratio %></td>
+                    <th class="warning">淨值比</th>
+                    <td><%= data[i].net_ratio %></td>
                   </tr>
                   <tr>
-                    <th class="warning">網址</th>
-                    <td><a href="<%= data[i].website %>"><%= data[i].website %></a></td>
-                    <th class="warning">電子信箱</th>
-                    <td><a href="mailto:<%= data[i].e_mail %>"><%= data[i].e_mail %></a></td>
+                    <th class="warning">單月營收(千元)</th>
+                    <td><%= data[i].revenue %></td>
+                    <th class="warning">實收資本額(佰萬)</th>
+                    <td><%= data[i].capital %></td>
                   </tr>
                   <tr>
                     <th class="warning">董事長</th>
@@ -73,18 +73,25 @@
                     <td><%= data[i].controller %></td>
                   </tr>
                   <tr>
-                    <th class="warning">員工人數</th>
-                    <td><%= data[i].employees %></td>
-                    <th class="warning">實收資本額(百萬)</th>
-                    <td><%= data[i].capital %></td>
-                  </tr>
-                  <tr>
                     <th class="warning">設立日期</th>
-                    <td colspan="4"><%= data[i].founded %></td> 
+                    <td><%= data[i].founded %></td>
+                    <th class="warning">上市日期</th>
+                    <td><%= data[i].listed_date %></td>
+                  </tr>
+
+                  <tr>
+                    <th class="warning">電話</th>
+                    <td><%= data[i].telephone %></td>
+                    <th class="warning">傳真</th>
+                    <td><%= data[i].fax %></td>
                   </tr>
                   <tr>
-                    <th class="warning">上市日期</th>
-                    <td colspan="4"><%= data[i].listed_date %></td>
+                    <th class="warning">網址</th>
+                    <td colspan="4"><a href="<%= data[i].website %>"><%= data[i].website %></a></td> 
+                  </tr>
+                  <tr>
+                    <th class="warning">電子信箱</th>
+                    <td colspan="4"><a href="mailto:<%= data[i].e_mail %>"><%= data[i].e_mail %></a></td>
                   </tr>
                     
 

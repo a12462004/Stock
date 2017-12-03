@@ -10,6 +10,12 @@ router.get('/', function(req, res, next) {
 	}
 	else{
 		new sql.ConnectionPool(db).connect().then(pool => {
+        //CAST將數值轉換成money型態
+        //CONVERT(NVARCHAR(20),value,1)轉換成三位一個逗號分隔
+        //Replace(value,'.00','')將money型態產生的小數點後面刪掉
+        //YEAR()-1因股東會日期都會在後一年開，因此需減一
+        //surplus+plot等於股票股利
+        //資料顯示為最新一個月在最上面
   			return pool.request().query("SELECT DividendPolicy.*,Replace(CONVERT(NVARCHAR(20),CEILING(CAST(CompanyProfile.capital AS money)/1000000),1),'.00','') AS capital,StockPrice.price_date AS updateDate,StockPrice.[open],StockPrice.up,StockPrice.down,StockPrice.clos,Replace(CONVERT(NVARCHAR(20),CAST(StockPrice.trading_volume AS money),1),'.00','') AS trading_volume,IndustryType.industry_name FROM (SELECT [code],[company],[cash_dividend],[surplus],[plot],YEAR([shareholders_date])-1 as date,(surplus+plot) as stock_dividend FROM [DividendPolicy] WHERE [DividendPolicy].code='"+code+"') AS DividendPolicy INNER JOIN (SELECT code,industry,capital FROM CompanyProfile WHERE code='"+code+"') AS CompanyProfile ON [DividendPolicy].code = CompanyProfile.code INNER JOIN (SELECT TOP 1 * FROM StockPrice WHERE code = '"+code+"' ORDER BY StockPrice.price_date DESC) AS StockPrice ON CompanyProfile.code = StockPrice.code INNER JOIN (SELECT * FROM IndustryType) AS IndustryType ON CompanyProfile.industry = IndustryType.industry_id ORDER BY DividendPolicy.[date] DESC")
   		}).then(result => {
     		let rows = result.recordset
@@ -28,6 +34,7 @@ router.get('/', function(req, res, next) {
   			});
 	}
 });
+/*圖表資料*/
 router.post('/getChartData',function(req,res,next){
 	var code = req.body.code;
 	// console.log(code);

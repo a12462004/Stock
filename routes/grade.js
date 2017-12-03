@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('./lib/db.js');
 var sql = require('mssql');
-/* GET company page. */
 router.get('/', function(req, res, next) {
 	res.render('./grade', {title: '股起勇氣' });
 	
@@ -21,6 +20,7 @@ router.post('/',function(req,res,next){
 	sql.connect(db,function(err){
 			if(err) console.log(err);
 			var request = new sql.Request();
+			//從資料庫取出本次測驗的題目和答案和選項
 			request.query("SELECT * FROM Topic WHERE id IN ("+question+")",function(err,result){
 				if(err){
 					console.log(err);
@@ -28,11 +28,12 @@ router.post('/',function(req,res,next){
 				}
 				sql.close();
 				var resultA = result.recordset;
-				var t_answer =[]; 
+				var t_answer =[]; //正確答案
 				for (var i = 0; i < resultA.length; i++) {
 					t_answer.push(resultA[i].answer);
 				}
 				var grade = 0;
+				//總共五題作答，若是使用者作答等於正確答案的話，成績+20分
 				for (var i = 0; i < 5; i++) {
 					if(t_answer[i] == u_answer[i]){
 						grade +=20;

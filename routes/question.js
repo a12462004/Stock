@@ -8,6 +8,7 @@ router.get('/',function(req,res,next){
 
 router.post('/', function(req, res, next) {
 	var question = [];
+	/*隨機產生五題，若是重複則再重新抓*/
 	for(var i=0;i<5;i++){
 		var rdm =0;
 		do {
@@ -25,6 +26,7 @@ router.post('/', function(req, res, next) {
 	sql.connect(db,function(err){
 			if(err) console.log(err);
 			var request = new sql.Request();
+			//顯示亂數產生的題目資料
 			request.query("SELECT * FROM Topic WHERE id IN ("+num+")",function(err,result){
 				if(err){
 					console.log(err);

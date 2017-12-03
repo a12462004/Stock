@@ -24,7 +24,7 @@
             </div>
             <div class="table-responsive col-sm-10">
               <table class="table table-striped table-bordered" style="width:100%;font-size: 20px">
-                <thead>
+                <thead class="upper">
                   <th class="warning">年月</th>
                   <th class="warning">開盤價</th>
                   <th class="warning">最高價</th>
@@ -34,23 +34,23 @@
                 </thead>
                 <tbody>
                   <% for(var i=0; i<data.length; i++) {%>
-                    <tr>
-                      <td>
+                    <tr class="tr1">
+                      <td class="td1">
                         <%= data[i].date%>
                       </td>
-                      <td>
+                      <td class="td2">
                         <%= data[i].m_open%>
                       </td>
-                      <td>
+                      <td class="td2">
                         <%= data[i].m_up%>
                       </td>
-                      <td>
+                      <td class="td2">
                         <%= data[i].m_down%>
                       </td>
-                      <td>
+                      <td class="td2">
                         <%= data[i].m_clos%>
                       </td>
-                      <td>
+                      <td class="td2">
                         <%= data[i].pe_ratio%>
                       </td>
                     </tr>

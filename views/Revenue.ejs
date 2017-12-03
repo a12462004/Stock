@@ -30,7 +30,7 @@
             </div>
             <div class="table-responsive col-sm-12 ">
               <table class="table table-striped table-bordered" style="width:100%;font-size: 20px">
-                <thead>
+                <thead class="upper">
                   <th class="warning">年月</th>
                   <th class="warning">單月營收(千元)</th>
                   <th class="warning">單月月增率(%)</th>
@@ -40,24 +40,24 @@
                 </thead>
                 <tbody>
                   <% for(var i=0; i<data.length; i++) {%>
-                    <tr>
-                      <td>
+                    <tr class="tr1">
+                      <td class="td1">
                         <%= data[i].date%>
                       </td>
-                      <td>
+                      <td class="td2">
                         <%= data[i].revenue%>
                       </td>
-                      <td>
+                      <td class="td2">
                         <%= data[i].m_growth_rate%>
                       </td>
-                      <td>
+                      <td class="td2">
                         <%= data[i].a_growth_rate%>
                       </td>
-                      <td>
-                        <%= data[i].acc_revenue%>
-                      </td>
-                      <td>
+                      <td class="td2">
                         <%= data[i].acc_growth_rate%>
+                      </td>
+                      <td class="td2">
+                        <%= data[i].acc_revenue%>
                       </td>
                     </tr>
                   <% } %>

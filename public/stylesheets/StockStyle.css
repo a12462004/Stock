@@ -66,13 +66,41 @@
     transform: translateY(-50%);
     /* vendor prefixes omitted due to brevity */
 }
-.table th{
-  width:140px;
-}
-.table td{
+.upper .warning{
   width:400px;
+  text-align:center;
+}
+
+.upper th{
+  width:170px;
+}
+.upper td{
+  width:400px;
+  text-align:center;
+}
+.CompanyTable.col-sm-10{
+width:170px;
+}
+.CompanyTable.table.table-striped.table-bordered{
+width:400px;
   text-align:left;
 }
+
+.tr1 .td2{
+  text-align:right;
+}
+.table.table-striped.table-bordered .date{
+  width:150px;
+  text-align:center;
+}
+.table.table-striped.table-bordered .note{
+  width:150px;
+}
+.table.table-striped.table-bordered .time{
+  width:150px;
+}
+
+
 .test {
   background-color: #FF00FF;
 }

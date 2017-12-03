@@ -5,11 +5,14 @@ var sql = require('mssql');
 
 router.get('/', function(req, res, next) {
 	var code = req.query.code;
-	if(code == undefined){ //若為undefined代表沒有輸入code，直接跳轉頁面到CompanyProfile的1101
+	if(code == undefined){ //若為undefined代表沒有輸入code，直接跳轉頁面到Revenue的1101
 		res.redirect("/Revenue?code=1101");
 	}
 	else{
 		new sql.ConnectionPool(db).connect().then(pool => {
+        //CAST將數值轉換成money型態
+        //CONVERT(NVARCHAR(20),value,1)轉換成三位一個逗號分隔
+        //Replace(value,'.00','')將money型態產生的小數點後面刪掉
   			return pool.request().query("SELECT Revenue.code,Replace(CONVERT(NVARCHAR(20),CAST(Revenue.revenue AS money),1),'.00','') AS revenue,Revenue.m_growth_rate,Revenue.a_growth_rate,Revenue.acc_revenue,Replace(CONVERT(NVARCHAR(20),CAST(Revenue.acc_growth_rate AS money),1),'.00','') AS acc_growth_rate,Revenue.last_revenue,SUBSTRING(Revenue.r_montly,1,4)+'/'+SUBSTRING(Revenue.r_montly,5,2) AS [date],CompanyProfile.company,Replace(CONVERT(NVARCHAR(20),CEILING(CAST(CompanyProfile.capital AS money)/1000000),1),'.00','') AS capital,StockPrice.[open],StockPrice.up,StockPrice.down,StockPrice.price_date AS updateDate ,StockPrice.clos,Replace(CONVERT(NVARCHAR(20),CAST(StockPrice.trading_volume AS money),1),'.00','') AS trading_volume,IndustryType.industry_name FROM (SELECT * FROM Revenue WHERE code = '"+code+"') AS Revenue INNER JOIN (SELECT code,company,industry,capital FROM CompanyProfile  WHERE code ='"+code+"') AS CompanyProfile ON Revenue.code = CompanyProfile.code INNER JOIN (SELECT TOP 1 * FROM StockPrice WHERE code = '"+code+"' ORDER BY StockPrice.price_date DESC) AS StockPrice ON CompanyProfile.code = StockPrice.code INNER JOIN (SELECT * FROM IndustryType) AS IndustryType ON CompanyProfile.industry = IndustryType.industry_id ORDER BY Revenue.r_montly DESC")
   		}).then(result => {
     		let rows = result.recordset
@@ -29,6 +32,8 @@ router.get('/', function(req, res, next) {
 		
 	}
 });
+
+/*圖表資料*/
 router.post('/getChartData',function(req,res,next){
 	var code = req.body.code;
 	// console.log(code);

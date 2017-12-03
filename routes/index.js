@@ -16,6 +16,7 @@ router.post('/search',function(req,res,next){
 	sql.connect(db,function(err){
 		if(err) console.log(err);
 		var request =  new sql.Request();
+		//顯示code和company部分符合的資料
 		request.query("SELECT code,company FROM CompanyProfile WHERE code LIKE '%" + keyword+ "%' OR company LIKE '%" + keyword + "%'",function(err,result){
 			if(err){
 				console.log(err);
@@ -23,7 +24,7 @@ router.post('/search',function(req,res,next){
 			}
 			sql.close();
 			// console.log(result.recordset);
-			var list = [];
+			var list = []; //比對結果之下拉清單顯示字串
 			for (var i = 0; i < result.rowsAffected; i++) {
 				list[i]= result.recordset[i].code + "　"+result.recordset[i].company;
 			}
@@ -54,13 +55,13 @@ router.post('/member',function(req,res,next){
 					}
 					else{
 						// console.log('新增成功.');
-						 sql.close(); //sql要記得關，不然會卡住run不動.
+						 sql.close();
 					}
 				});
 			}
 			else if(rowsCount == '1'){
 				// console.log('已是會員.');
-				sql.close(); //sql要記得關，不然會卡住run不動.
+				sql.close();
 			}
 			
 		});
