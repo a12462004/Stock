@@ -17,7 +17,7 @@ router.post('/search',function(req,res,next){
 		if(err) console.log(err);
 		var request =  new sql.Request();
 		//顯示code和company部分符合的資料
-		request.query("SELECT code,company FROM CompanyProfile WHERE code LIKE '%" + keyword+ "%' OR company LIKE '%" + keyword + "%'",function(err,result){
+		request.query("SELECT code,company FROM CompanyProfile WHERE ( code LIKE '%" + keyword+ "%' OR company LIKE '%" + keyword + "%' ) AND listed_type != ''",function(err,result){
 			if(err){
 				console.log(err);
 				res.send(err);
