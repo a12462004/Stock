@@ -39,8 +39,8 @@ router.post('/conllection',function(req,res,next){
 	console.log(req);
 	var act = req.body.act;
 	var CollectedId = req.body.code;
-	var id = req.headers.cookie.split(';'); //split 切割字串
-	id = id[1].slice(4); //取fb的id，slice(字串從第幾位開始取)
+	var id = req.rawHeaders.Cookie.split(';'); //split 切割字串
+	id = id[0].slice(4); //取fb的id，slice(字串從第幾位開始取)
 	// console.log(id);
 	if(act =='add'){
 		sql.connect(db,function(err){
