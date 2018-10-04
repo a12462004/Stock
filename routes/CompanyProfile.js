@@ -39,16 +39,16 @@ router.post('/conllection',function(req,res,next){
 	var act = req.body.act;
 	var CollectedId = req.body.code;
 	var id = req.headers.cookie.split(';'); //split 切割字串
-	id = id[1].slice(4); //取fb的id，slice(字串從第幾位開始取)
+	id = id[2].slice(4); //取fb的id，slice(字串從第幾位開始取)
 	// console.log(id);
 	if(act =='add'){
 		sql.connect(db,function(err){
-			if (err) console.log(req.headers.cookie.split(';'));
+			if (err) console.log(err);
 			var request = new sql.Request();
 			request.query("SELECT count(id) AS count FROM Collection WHERE fbId="+id+" AND CollectedId="+CollectedId,function(err,result){ //比對是否已經有收藏了
 				if(err){
 					console.log(err);
-					res.send(err);
+					res.send(req.headers.cookie);
 				}
 				// console.log(result.recordset);
 				var rowsCount = result.recordset[0].count; //筆數
@@ -56,7 +56,7 @@ router.post('/conllection',function(req,res,next){
 					request.query("INSERT INTO Collection(fbId,CollectedId) VALUES('"+id+"','"+CollectedId+"')",function(err,result){
 						if(err){
 							console.log(err);
-							res.send(err);
+							res.send(req.headers.cookie);
 						}
 						else{
 							res.send('已收藏');
