@@ -39,11 +39,11 @@ router.post('/conllection',function(req,res,next){
 	var act = req.body.act;
 	var CollectedId = req.body.code;
 	var id = req.headers.cookie.split(';'); //split 切割字串
-	id = id[2].slice(4); //取fb的id，slice(字串從第幾位開始取)
+	id = id[1].slice(4); //取fb的id，slice(字串從第幾位開始取)
 	// console.log(id);
 	if(act =='add'){
 		sql.connect(db,function(err){
-			if (err) console.log(err);
+			if (err) console.log(req.headers.cookie.split(';'));
 			var request = new sql.Request();
 			request.query("SELECT count(id) AS count FROM Collection WHERE fbId="+id+" AND CollectedId="+CollectedId,function(err,result){ //比對是否已經有收藏了
 				if(err){
