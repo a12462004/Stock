@@ -36,10 +36,10 @@ router.get('/', function(req, res, next) {
 
 /*收藏功能*/
 router.post('/conllection',function(req,res,next){
-	console.log(req);
+	console.log(req.headers.cookie.split(';'));
 	var act = req.body.act;
 	var CollectedId = req.body.code;
-	var id = req.rawHeaders.Cookie.split(';'); //split 切割字串
+	var id = req.headers.cookie.split(';'); //split 切割字串
 	id = id[0].slice(4); //取fb的id，slice(字串從第幾位開始取)
 	// console.log(id);
 	if(act =='add'){
