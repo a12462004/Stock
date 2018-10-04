@@ -65,7 +65,6 @@
         </div>
       </div>
     </div>
-    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
     <script type="text/javascript">
       $.ajax({
               url: '/PER/getChartData',
@@ -87,90 +86,72 @@
                   down.push(ChartData[i].down);
                   clos.push(ChartData[i].clos);
                 }
-                require.config({
-                  paths: {
-                    echarts: 'http://echarts.baidu.com/build/dist'
-                  }
-                });
-                require(
-                [
-                  'echarts',
-                  'echarts/chart/bar',
-                  'echarts/chart/line'
-                ],
-                function (ec) {
-                  var myChart = ec.init(document.getElementById('main1')); 
-                  var option = {
-                        backgroundColor:'rgba(255, 255, 255, 0.5)',
-                        title:{
-                          text:'本益比',
-                          x:'center',
+                var myChart = echarts.init(document.getElementById('main1')); 
+                var option = {
+                      backgroundColor:'rgba(255, 255, 255, 0.5)',
+                      title:{
+                        text:'本益比',
+                        x:'center',
+                        textStyle:{
+                          fontSize:26,
+                          fontWeight:'bolder',
+                          color: "#000000",
+                          fontFamily:'DFKai-sb'
+                          // fontFamily:'Microsoft YaHei'
+                        }
+                      },
+                      tooltip: {
+                          trigger: 'axis'
+                      },
+                      legend: {
+                          data:['本益比','月收盤價'],
+                          x:'right',
+                          padding:[35,50,0],
                           textStyle:{
-                            fontSize:26,
-                            fontWeight:'bolder',
-                            color: "#000000",
-                            fontFamily:'DFKai-sb'
-                            // fontFamily:'Microsoft YaHei'
+                          fontSize:18,
+                          color: "#000000",
+                          fontFamily:'DFKai-sb'
+                          // fontFamily:'Microsoft YaHei'
+                        }
+                      },
+                      grid: {
+                          left: '3%',
+                          right: '4%',
+                          bottom: '3%',
+                          containLabel: true
+                      },
+                      xAxis: {
+                          type: 'category',
+                          boundaryGap: false,
+                          data: year
+                      },
+                      yAxis:[ {
+                          type: 'value',
+                          position:'left',
+                          name:'百分比(%)'
+                      },{
+                          type: 'value',
+                          position:'right',
+                          name:'元'
+                      }],
+                      series: [
+                          {
+                              name:'本益比',
+                              type:'line',
+                              stack: '本益比',
+                              // 顏色變換
+                              itemStyle: {normal: {color:'rgba(184,208,0,1)'}},
+                              data: pe_ratio
+                          },{
+                              name:'月收盤價',
+                              type:'line',
+                              yAxisIndex: 1,
+                              stack: '月收盤價',
+                              data: clos
                           }
-                        },
-                        tooltip: {
-                            trigger: 'axis'
-                        },
-                        legend: {
-                            data:['本益比','月收盤價'],
-                            x:'right',
-                            padding:[35,50,0],
-                            textStyle:{
-                            fontSize:18,
-                            color: "#000000",
-                            fontFamily:'DFKai-sb'
-                            // fontFamily:'Microsoft YaHei'
-                          }
-                        },
-                        grid: {
-                            left: '3%',
-                            right: '4%',
-                            bottom: '3%',
-                            containLabel: true
-                        },
-                        toolbox: {
-                            feature: {
-                                saveAsImage: {}
-                            }
-                        },
-                        xAxis: {
-                            type: 'category',
-                            boundaryGap: false,
-                            data: year
-                        },
-                        yAxis:[ {
-                            type: 'value',
-                            position:'left',
-                            name:'百分比(%)'
-                        },{
-                            type: 'value',
-                            position:'right',
-                            name:'元'
-                        }],
-                        series: [
-                            {
-                                name:'本益比',
-                                type:'line',
-                                stack: '本益比',
-                                // 顏色變換
-                                itemStyle: {normal: {color:'rgba(184,208,0,1)'}},
-                                data: pe_ratio
-                            },{
-                                name:'月收盤價',
-                                type:'line',
-                                yAxisIndex: 1,
-                                stack: '月收盤價',
-                                data: clos
-                            }
-                        ]
-                    };
-                  myChart.setOption(option); 
-               });
+                      ]
+                  };
+                myChart.setOption(option); 
               }
             });
     </script>
