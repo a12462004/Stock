@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('./lib/db.js');
 var sql = require('mssql');
 router.get('/', function(req, res, next) {
+	console.log(req.headers);
 	var id = req.headers.cookie.split(';'); //split 切割字串
 	id = id[1].slice(4); //取fb的id，slice(字串從第幾位開始取)
 	sql.connect(db,function(err){
